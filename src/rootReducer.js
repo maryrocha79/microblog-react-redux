@@ -3,19 +3,14 @@ const INITIAL_STATE = {
 };
 
 export default function rootReducer(state = INITIAL_STATE, action) {
-  if (action.type === 'ADD_POST') {
+  if (action.type === 'GET_POST') {
     return {
-      ...state,
-      posts: [
-        ...state.posts,
-        {
-          title: action.post.title,
-          body: action.post.body,
-          id: action.post.id,
-          isEditing: action.post.isEditing
-        }
-      ]
+      posts: action.posts
     };
+  }
+
+  if (action.type === 'ADD_POST') {
+    return { posts: [...state.posts, action.post] };
   }
   if (action.type === 'DELETE_POST') {
     const newState = state.posts.filter(post => post.id !== action.id);
@@ -23,6 +18,10 @@ export default function rootReducer(state = INITIAL_STATE, action) {
       ...state,
       posts: newState
     };
+
+    // return {
+    //   posts: state.posts
+    // };
   }
   if (action.type === 'EDIT_POST') {
     return {

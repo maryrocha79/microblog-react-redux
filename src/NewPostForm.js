@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid/v1';
 import { connect } from 'react-redux';
+import { createPost } from './actionCreator';
 
 class NewPostForm extends Component {
   state = {
@@ -15,10 +16,7 @@ class NewPostForm extends Component {
 
   gatherInput = e => {
     e.preventDefault();
-    this.props.dispatch({
-      type: 'ADD_POST',
-      post: { ...this.state, id: uuid(), isEditing: false }
-    });
+    this.props.createPost(this.state);
     this.setState({
       title: '',
       body: ''
@@ -50,4 +48,7 @@ class NewPostForm extends Component {
   }
 }
 
-export default connect()(NewPostForm);
+export default connect(
+  null,
+  { createPost }
+)(NewPostForm);
