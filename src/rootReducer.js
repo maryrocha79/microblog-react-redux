@@ -8,7 +8,12 @@ export default function rootReducer(state = INITIAL_STATE, action) {
       ...state,
       posts: [
         ...state.posts,
-        { title: action.post.title, body: action.post.body, id: action.post.id }
+        {
+          title: action.post.title,
+          body: action.post.body,
+          id: action.post.id,
+          isEditing: action.post.isEditing
+        }
       ]
     };
   }
@@ -22,12 +27,18 @@ export default function rootReducer(state = INITIAL_STATE, action) {
   if (action.type === 'EDIT_POST') {
     return {
       posts: state.posts.map(post => {
-        if (post.id === action.id) {
-          post.title = action.title;
-          post.body = action.body;
+        if (post.id === action.post.id) {
+          post.title = action.post.title;
+          post.body = action.post.body;
+          post.isEditing = action.post.isEditing;
         }
         return post;
       })
+    };
+  }
+  if (action.type === 'TOGGLE_EDIT_POST') {
+    return {
+      posts: action.posts
     };
   }
   return state;

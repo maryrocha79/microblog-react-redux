@@ -17,7 +17,7 @@ class NewPostForm extends Component {
     e.preventDefault();
     this.props.dispatch({
       type: 'ADD_POST',
-      post: { ...this.state, id: uuid() }
+      post: { ...this.state, id: uuid(), isEditing: false }
     });
     this.setState({
       title: '',

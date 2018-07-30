@@ -12,17 +12,17 @@ class NewPostForm extends Component {
     });
   };
 
-  // gatherInput = e => {
-  //   e.preventDefault();
-  //   this.props.dispatch({
-  //     type: 'EDIT_POST',
-  //     post: { ...this.state }
-  //   });
-  //   this.setState({
-  //     title: '',
-  //     body: ''
-  //   });
-  // };
+  gatherInput = e => {
+    e.preventDefault();
+    this.props.dispatch({
+      type: 'EDIT_POST',
+      post: { ...this.state, id: this.props.id, isEditing: false }
+    });
+    this.setState({
+      title: '',
+      body: ''
+    });
+  };
 
   render() {
     return (
@@ -43,7 +43,7 @@ class NewPostForm extends Component {
           onChange={this.handleChange}
         />
 
-        <button>Add Post</button>
+        <button>Edit Post</button>
       </form>
     );
   }

@@ -8,10 +8,20 @@ import TitleList from './TitleList';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <PostList />
-        <NewPostForm />
-        <TitleList />
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <NewPostForm />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <PostList />
+          </div>
+          <div className="col-6">
+            <TitleList />
+          </div>
+        </div>
       </div>
     );
   }
